@@ -1,38 +1,22 @@
-//手写promise 自己实现一个promise
-new Promise((resolve,reject) => {
-    setTimeout(() => {
-        resolve(1);
-    },0);
-}).then(value => {
-    console.log(value);
-})
-//传入一个函数， 函数有2个参数resolve,reject 都是
-//promise的回调函数 成功的回调resolve,和失败的reject
+const PENDING = 'pending'
+const RESOLVED = 'resolved'
+const REJECTED = 'rejected'
 
+function MyPromise(fn){
+    const that = this
+    that.state = PENDING
+    that.value = null
+    that.resolvedCallbacks = []
+    that.rejectedCallbacks = []
 
-const PENDING = "pending";
-const RESOLVED = "resolved";
-const REJECTED = "rejected";
-
-function MyPromise(fn) {
-  //  在函数体内部首先创建常量that，因为代码可能会异步执行，用于获取正确的this对象
-    const that = this;
-    that.state = PENDING;
-    that.value = null;
-    //保存then中的回调 当执行完then时可能还是promise
-    that.resolvedCallbacks = [];
-    that.rejectedCallbacks = [];
-    //
-    // 首先两个函数都得判断当前状态是否为等待中，因为规范规定只有等待态才可以改变状态
-    // 将当前状态更改为对应状态，并且将传入的值赋值给 value
-    // 遍历回调数组并执行
     function resolve(value) {
-        if(that.state === PENDING){
-            that.state = RESOLVED;
-            that.value = value;
-            that.resolvedCallbacks.map(cb => cb(that.value));
+        if(that.state === PENDING) {
+            that.state = RESOLVED
+            that.value = value
+            that.resolvedCallbacks.map(cb => cb(that.value))
         }
     }
+
     function reject(value) {
         if(that.state === PENDING){
             that.state = REJECTED
@@ -41,11 +25,12 @@ function MyPromise(fn) {
         }
     }
     try {
-        fn(resolve,reject)
-    }catch {e} {
-        reject(e);
+        fn(resolve, reject)
+    } catch (e) {
+        reject(e)
     }
 }
+
 MyPromise.prototype.then = function(onFulfilled, onRejected) {
     const that = this
     //对传入的两个参数做判断，如果不是函数将其转为函数
@@ -61,13 +46,28 @@ MyPromise.prototype.then = function(onFulfilled, onRejected) {
             }
 
     if(that.state === PENDING) {
+        //回调函数中push
         that.resolvedCallbacks.push(onFulfilled)
         that.rejectedCallbacks.push(onRejected)
     }
     else if(that.state === RESOLVED) {
-        onFulfilled(that.value)
+        onFulfilled(that.value);
     }
     else {
-        onRejected(that.value)
+        onRejected(that.value);
     }
 }
+var promise = new MyPromise((resolve,reject) => {
+    setTimeout(() => {
+        resolve("hello end");
+    },3000);
+})
+promise.then((res1,res2) => {
+    console.log(res1);
+    console.log("finish");
+})
+//js的流程是单线程下来的 所以setTImeout会放在最后去执行。初始化构造promise的时候，传递进去的是一个函数 其中需要2个参数，参数都是函数。
+//在构造函数中，执行该函数fn,fn中传入的实参便是构造函数中定义好的resolve和reject,随后resolve和reject便被保存进异步函数的操作过程中，由于js是单线程执行的，
+//所以执行then方法，由于当前状态还是pending状态，所以将最终处理的回调函数保存进数组中，接下来异步函数执行完了，执行里面的resolve函数，resolve函数里面判断当前是pending状态，就转化为onfullfilled状态，执行里面由上文保存的最终处理的回调函数，并且将参数传入。
+// 在then方法中将最终的回调函数保存进resolvedCallbacks方法中，
+//随后去执行异步函数中的resolve方法。resolve方法将状态改变，将值传入，执行保存进来的onFullied函数

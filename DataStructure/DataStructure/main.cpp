@@ -2,6 +2,7 @@
 #include<cstring>
 #include<algorithm>
 #include<map>
+#include<vector>
 using namespace std;
 typedef struct Node{
     int data;
@@ -124,25 +125,42 @@ ListNode* deleteDuplication(ListNode* pHead)
     
     return head;
 }
-
+int game(vector<int>& guess, vector<int>& answer) {
+    int cnt = 0;
+    vector<int>::iterator iter1;
+    vector<int>::iterator iter2;
+    for(iter1 = guess.begin();iter1 != guess.end();iter1++){
+        if(*iter1 == *iter2)
+            cnt++;
+    }
+    return cnt;
+}
 int main() {
-    ListNode *head = (ListNode *)malloc(sizeof(ListNode));
-    head -> val = 1;
-    ListNode *temp_head = head;
-    head -> next = NULL;
-    int n;
-    while(cin >> n && n != 0){
-        ListNode *temp = (ListNode *)malloc(sizeof(ListNode));;
-        temp -> next = NULL;
-        temp -> val = n;
-        temp_head -> next = temp;
-        temp_head = temp;
+    vector<char>v = {'a','b','b','b','b','b','b','b','b','b','b','b','b'};
+ 
+//    ListNode *head = (ListNode *)malloc(sizeof(ListNode));
+//    head -> val = 1;
+//    ListNode *temp_head = head;
+//    head -> next = NULL;
+//    int n;
+//    while(cin >> n && n != 0){
+//        ListNode *temp = (ListNode *)malloc(sizeof(ListNode));;
+//        temp -> next = NULL;
+//        temp -> val = n;
+//        temp_head -> next = temp;
+//        temp_head = temp;
+//    }
+//    head = deleteDuplication(head);
+//    while (head) {
+//        cout<<head -> val<<" ";
+//        head = head -> next;
+//    }
+    int cnt  = 0;
+    for(int i = 100;i <= 999;i++){
+        if(i % 3 == 2 && i % 7 == 3 && i % 11 == 4)
+            cnt++;
     }
-    head = deleteDuplication(head);
-    while (head) {
-        cout<<head -> val<<" ";
-        head = head -> next;
-    }
+    cout<<cnt;
     return 0;
 }
 

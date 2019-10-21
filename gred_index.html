@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--grid布局的使用-->
+    <meta charset="UTF-8">
+    <meta name="author" content="ckq">
+    <title>Title</title>
+    <style>
+        /*.grid{*/
+            /*display: grid;*/
+            /*grid-template-columns: repeat(12, 1fr);*/
+        /*}*/
+        /*.grid div{*/
+            /*border:1px solid;*/
+        /*}*/
+        /**{*/
+            /*margin: 0;*/
+            /*padding: 0;*/
+        /*}*/
+        /*body{*/
+          /**/
+
+        /*}*/
+        /*.grid-second{*/
+            /*display: grid;*/
+            /*place-content: center;*/
+            /*width: 100%;*/
+            /*height: 100%;*/
+        /*}*/
+        /*圣杯布局*/
+        .container{
+            display: grid;
+            grid-template-columns: 150px auto 150px;
+            grid-gap: 1em;
+        }
+        header,footer{
+            grid-column: 1 / 4;
+        }
+        header,
+        aside,
+        article,
+        footer{
+            background: blue;
+            display: grid;
+            place-content: center;
+            height: 17vh;
+        }
+        @media all and (max-width: 700px){
+aside,
+            article{
+    grid-column: 1 / 4;
+}
+        }
+
+    </style>
+</head>
+<body>
+<!--<div class="grid">-->
+    <!--<div>1</div>-->
+    <!--<div>1</div>-->
+    <!--<div>1</div>-->
+    <!--<div>1</div>-->
+    <!--<div>1</div>-->
+    <!--<div>1</div>-->
+    <!--<div>1</div>-->
+    <!--<div>1</div>-->
+    <!--<div>1</div>-->
+    <!--<div>1</div>-->
+    <!--<div>1</div>-->
+    <!--<div>1</div>-->
+
+
+
+<!--&lt;!&ndash;</div>&ndash;&gt;-->
+<!--<div class="grid-second">-->
+
+    <!--<div>asdf</div>-->
+<!--</div>-->
+<div class="container">
+    <header>Header</header>
+    <aside>
+        Left
+    </aside>
+    <article>article</article>
+    <aside>right</aside>
+    <footer>
+        Footer
+    </footer>
+</div>
+</body>
+</html>

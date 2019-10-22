@@ -3,6 +3,7 @@ const RESOLVED = 'resolved'
 const REJECTED = 'rejected'
 
 function MyPromise(fn){
+    console.log("cmimit");
     const that = this
     that.state = PENDING
     that.value = null

@@ -1,5 +1,6 @@
 //flatten函数 将多维函数变成一维函数
 function flatten(arr) {
+    console.log("tet");
     let arrs =[...arr]
     let newArr = [];
     while (arrs.length) {

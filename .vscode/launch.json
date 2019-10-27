@@ -5,6 +5,19 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "(lldb) 启动",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "输入程序名称，例如 ${workspaceFolder}/a.out",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "lldb"
+        },
+
+        {
             "type": "chrome",
             "request": "launch",
             "name": "Launch Chrome against localhost",
@@ -20,7 +33,17 @@
           
             "sourceMaps": false,
             "webRoot": "${workspaceFolder}",
-        }
-
+        },
+        { "name": "debug", 
+            "type": "cppdbg", 
+            "request": "launch",
+             "program": "${workspaceFolder}/temp", 
+             "args": [], "stopAtEntry": false, 
+                "cwd": "${workspaceFolder}",
+                 "environment": [], 
+                 "externalConsole": true,
+                  "MIMode": "lldb",
+                 }
+          
     ]
 }

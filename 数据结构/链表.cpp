@@ -9,7 +9,7 @@ typedef struct Node{
     struct Node *next;
 }*NodeList;
 
-//创建链表 返回头指针
+//创建链表 头插法 返回头指针
 NodeList headCreate(NodeList &L) {
     NodeList p;
     L = (NodeList)malloc(sizeof(Node));
@@ -25,7 +25,7 @@ NodeList headCreate(NodeList &L) {
     return L;
     
 }
-//创建链表 返回头指针
+//创建链表 尾插法 返回头指针
 NodeList tailCreate(NodeList &L) {
     NodeList p;
     L = (NodeList)malloc(sizeof(Node));
@@ -43,18 +43,12 @@ NodeList tailCreate(NodeList &L) {
     return L;
     
 }
-
-string LeftRotateString(string str, int n) {
-    
-    string start_str = str.substr(0,n);
-    string end_str = str.substr(n,str.length() - n);
-    return end_str + start_str;
-}
 struct ListNode {
     int val;
     struct ListNode *next;
    
 };
+//删除重复的节点
 ListNode* deleteDupl(ListNode* pHead)
 {
       map<int,int>M;
@@ -80,7 +74,7 @@ ListNode* deleteDupl(ListNode* pHead)
     return head;
 }
 
-
+//删除重复的节点
 ListNode* deleteDuplication(ListNode* pHead)
 {
     if(pHead == NULL)
@@ -125,42 +119,3 @@ ListNode* deleteDuplication(ListNode* pHead)
     
     return head;
 }
-int game(vector<int>& guess, vector<int>& answer) {
-    int cnt = 0;
-    vector<int>::iterator iter1;
-    vector<int>::iterator iter2;
-    for(iter1 = guess.begin();iter1 != guess.end();iter1++){
-        if(*iter1 == *iter2)
-            cnt++;
-    }
-    return cnt;
-}
-int main() {
-    vector<char>v = {'a','b','b','b','b','b','b','b','b','b','b','b','b'};
- 
-//    ListNode *head = (ListNode *)malloc(sizeof(ListNode));
-//    head -> val = 1;
-//    ListNode *temp_head = head;
-//    head -> next = NULL;
-//    int n;
-//    while(cin >> n && n != 0){
-//        ListNode *temp = (ListNode *)malloc(sizeof(ListNode));;
-//        temp -> next = NULL;
-//        temp -> val = n;
-//        temp_head -> next = temp;
-//        temp_head = temp;
-//    }
-//    head = deleteDuplication(head);
-//    while (head) {
-//        cout<<head -> val<<" ";
-//        head = head -> next;
-//    }
-    int cnt  = 0;
-    for(int i = 100;i <= 999;i++){
-        if(i % 3 == 2 && i % 7 == 3 && i % 11 == 4)
-            cnt++;
-    }
-    cout<<cnt;
-    return 0;
-}
-

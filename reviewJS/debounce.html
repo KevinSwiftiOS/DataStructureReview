@@ -1,0 +1,180 @@
+    <!DOCTYPE html>
+    <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+    <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+    <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+    <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+        <head>
+            <meta charset="utf-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <title></title>
+            <meta name="description" content="">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <link rel="stylesheet" href="">
+        </head>
+        <body style="height: 100000px;">
+            <!--[if lt IE 7]>
+                <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+            <![endif]-->
+            
+            <script>
+//非立即执行版
+function debounce(func,wait){
+    var timeout = null;
+    return function() {
+        if(timeout)
+        clearTimeout(timeout);
+        timeout = setTimeout(func,wait);
+    }
+}
+
+function debounce(func,wait){
+    var timeout = null;
+    return function(){
+        if(timeout)
+        clearTimeout(timeout);
+        timeout = setTimeout(func,wait);
+    }
+}
+function debounce_2(func,wait){
+    var flag = true;
+    var timeout = null;
+    return function() {
+        clearTimeout(timeout);
+        if(flag){
+            flag = false;
+            func.apply(this,arguments);
+
+        }
+        timeout = setTimeout(() => {
+            flag = true;
+        },wait);
+    }
+}
+
+
+
+
+
+function debounce_2(func,wait){
+    var timeout = null;
+    var flag = true;
+    return function() {
+        clearTimeout(timeout);
+        if(flag){
+            func.apply(this,arguments);
+            flag = false;
+        }
+        timeout = setTimeout(() => {
+            flag = true;
+        },1000);
+    }
+}
+function handle(){
+    console.log(Math.random());
+}
+ 
+window.addEventListener('scroll',debounce_2(handle,1000));
+
+
+
+
+function bubbleSort(a,length){
+    for(var i = 0; i < length;i++){
+        var flag = false;
+        for(var j = length - 1; j >= i;j--){
+            if(a[j - 1] > a[j]){
+                var temp = a[j - 1];
+                a[j - 1] = a[j];
+                a[j] = temp;
+                flag = true;
+            }
+        }
+        if(!flag)
+        return;
+    }
+}
+
+function Partion(a,left,right){
+    var Pivo = a[left];
+    while(left < right){
+        while(left < right && a[right] > Pivo)
+        right--;
+        var temp = a[left];
+        a[left] = a[right];
+        a[right] = temp;
+        while(left < right && a[left] < Pivo)
+        left++;
+        var temp = a[left];
+        a[left] = a[right];
+        a[right] = temp;
+    }
+    return left;
+}
+function QuickSort(a,left,right){
+    if(left < right){
+        var p = Partion(a,left,right);
+        QuickSort(a,left,p - 1);
+        QuickSort(a,p + 1,right);
+    }
+}
+function insertSort(a,length){
+   for(var i = 0; i < length;i++){
+       var now = a[i];
+       var j;
+       for(j = i - 1; j >= 0;j--){
+           if(now > a[j])
+           break;
+       }
+       for(j = i - 1; j >= 0 && a[j] > now;j--)
+       a[j + 1] = a[j];
+       a[j + 1] = now;
+   }
+}
+
+
+
+
+
+var arrs = [1,5,4,3,2];
+insertSort(arrs,5);
+console.log(arrs);
+
+
+
+function ajax(url,cb){
+    var xhr;
+    if(window.XMLHttpRequest){
+        xhr = new XMLHttpRequest();
+    }else if(window.ActiveXObject){
+        xhr = new ActiveXObject("Microsoft.XMLHTTP");
+        
+    }
+    xhr.onreadystatechange = function() {
+        //0未初始化 1 建立服务器连接 2.请求已接收 3 交互 4 请求已完成并且做好响应
+        if(xhr.readyState = 4 && xhr.status == 200)
+        cb(xhr.responseText);
+    }
+xhr.open('GET',url,true);
+xhr.send();
+
+}
+
+function ajax(url,cb){
+    var xhr;
+    if(window.XMLHttpRequest){
+        xhr = new XMLHttpRequest();
+        }
+        else if(window.ActiveXObject("Microsoft http"))
+        xhr = new ActiveXObject();
+        xhr.onreadystatechange = function(){
+            if(xhr.readyState == 4 && xhr.status == 200)
+             cb(xhr.responseText);
+        }
+xhr.open("GET",url,true);
+xhr.send();
+    }
+
+
+            </script>
+        </body>
+    </html>

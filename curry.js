@@ -11,7 +11,7 @@ function curry(func) {
 
         // 如果参数够了就执行
         if (_args.length >= func.length) {
-            const result = func(..._args)
+            const result = func(..._args);
             _args = []
             return result;
         }

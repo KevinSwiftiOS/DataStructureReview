@@ -1,0 +1,177 @@
+    <!DOCTYPE html>
+    <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+    <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+    <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+    <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+        <head>
+            <meta charset="utf-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <title></title>
+            <meta name="description" content="">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <link rel="stylesheet" href="">
+        </head>
+        <body>
+            <!--[if lt IE 7]>
+                <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+            <![endif]-->
+            <img src="http://nasac2019.zju.edu.cn/images/chenchun.jpg">
+
+            <button
+            onclick = "downloadImage('http://nasac2019.zju.edu.cn/images/chenchun.jpg',
+            'hdu')">
+             
+             下载图片
+            </button>
+          <script>
+       const notice = new Notification("前端宇宙情报局", {
+  body: "这20个不常用的Web API真的有用吗?，别问，问就是有用🈶",
+  icon: "我的掘金头像",
+  data: {
+    url: "https://www.baidu.com"
+  }
+});
+Notification.requestPermission(prem => {
+  prem == "granted" // 同意
+  prem == "denied" // 拒绝
+})
+Function.prototype.myCall = function(context){
+    var context = context || window;
+    context.fn = this;
+    var args = [...arguments].slice(1);
+    var res = context.fn(...args);
+    delete context.fn;
+    return res;
+}
+Function.prototype.myBind = function(context){
+    var context = context || window;
+    context.fn = this;
+    var res = arguments[1] ? context.fn(...arguments[1]) : context.fn();
+    delete context.fn;
+    return res;
+}
+
+
+
+function call(sex){
+    console.log(this.name + "性别" + sex);
+}
+var obj = {
+    name:"ckq"
+}
+call.myBind(obj,"难");
+// 点击回调
+notice.onclick = () => {
+  window.open(notice.data.url); // 当用户点击通知时，在浏览器打开百度网站
+};
+
+
+//对象字面量创建
+//var a = {};
+var obj = new Object();
+var obj_1 = Object.create(Object.prototype);
+let str = "hello world";
+let b = [...str].reverse().join("");
+var arr = [];
+console.log(arr.constructor == Array);
+console.log([...new Set([1,1,2])]);
+// const a = {"name":1};
+// a.name = "2";
+// console.log(a);
+
+for (let i = 0; i < 10; i++) {
+ 
+        var a = document.createElement('a')
+        a.innerHTML = i + '<br>'
+        a.addEventListener('click', function (e) {
+            e.preventDefault()
+            alert(i)
+        })
+        document.body.appendChild(a)
+  
+}
+var objs = [1,2,3];
+for(var key in objs){
+  console.log(objs[key]);
+}
+function F1() {
+  var a = 100;
+  return function() {
+    console.log(a);
+  }
+};
+var random = Math.random();
+// var random = random.slice(0, 10)
+// console.log(random)
+var f1 = F1();
+function F2(fn){
+  var a = 200;
+  fn();
+}
+F2(f1);
+
+var f1 = F1();
+var a = 200;
+f1();
+
+
+
+// function deepCopy(fromObj,toObj){
+//   for(var key in fromObj){
+//     var value = fromObj[key];
+//     if(typeof value != 'object')
+//     toObj[key] = value;
+//     else{
+//       var tempObj = new value.constructor;
+//       deepCopy(value,tempObj);
+//       toObj[key] = tempObj;
+//     }
+//   }
+// }
+// var temp1 = {"name":"sex",age:[1,2,3]};
+// var temp2 = {};
+// deepCopy(temp1,temp2);
+// console.log(temp2);
+
+function deepCopy(fromObj,toObj){
+  for(var key in fromObj){
+    var fromValue = fromObj[key];
+    if(typeof fromValue != 'object')
+    toObj[key] = fromValue;
+    else{
+      var tempObj = new fromValue.constructor;
+      deepCopy(fromValue,tempObj);
+      toObj[key] = tempObj;
+    }
+  }
+  function debounce(func,wait){
+    var timeout = null;
+    return function() {
+      if(timeout)
+      clearTimeout(timeout);
+      timeout = setTimeout(func,wait);
+    }
+  }
+  function debounce_2(func,wait){
+    var timeout = null;
+    var flag = true;
+    return function(){
+      clearTimeout(timeout);
+      if(flag){
+        flag = false;
+        func.apply(this,[...arguments]);
+      }else{
+        timeout = setTimeout(() => {
+          flag = true;
+        },wait);
+      }
+    }
+  }
+
+
+}
+
+
+      </script>
+        </body>
+    </html>

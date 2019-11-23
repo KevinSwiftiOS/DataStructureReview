@@ -1,23 +1,31 @@
+//深拷贝
 var a = {"name":"ckq"};
-var b = JSON.parse(JSON.stringify(a));
-b.name = "caq";
+var b = Object.assign({},a);
+b.name = "xxy";
 console.log(a);
-var c = Object.assign({},a);
-c.name = "casa";
+//使用json.stringFy
+var c = JSON.parse(JSON.stringify(a));
+c.name = "cxb";
+console.log(c);
 console.log(a);
-//深拷贝的原理是递归调用 当发现当前数据类型不是基本类型的时候 递归调用本函数
-function deepCopy(fromObj,ToObj){
+var obj1 = {"name":[1,2,3]};
+var obj2 = {};
+deepCopy(obj1,obj2);
+console.log(obj2);
+//深拷贝
+function deepCopy(fromObj,toObj){
     for(var key in fromObj){
-        if(typeof fromObj[key] != "object"){
-            ToObj[key] = fromObj[key];
+        var fromValue = fromObj[key];
+        if(typeof fromObj != 'object'){
+            toObj[key] = fromValue;
         }else{
-            var tempObj = new fromObj[key].constructor; //构造函数是使用fromObj[key]的
-            deepCopy(fromObj[key],tempObj);
-            ToObj[key] = tempObj;
+            var tempObj = new fromValue.constructor;
+            deepCopy(fromValue,tempObj);
+            toObj[key] = tempObj;
         }
     }
 }
-var from = {"name":"3232","sex":[1,2,3]};
-var kong = {};
-deepCopy(from,kong);
-console.log(kong);
+var fromObj = {"name":[1,2,3]};
+var toObj = {};
+deepCopy(fromObj,toObj);
+console.log(toObj);

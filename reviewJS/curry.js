@@ -3,14 +3,16 @@ function add(a,b,c){
     return a + b + c;
 }
 function curry(func){
-   let _args = [];
-   function _curry(...args){
-       _args = _args.concat(args);
-       if(_args.length > func.length){
-        const res = func(..._args);
-        _args = [];
-        return res;
-       }
-   }
-   return _curry;
+    var args = [];
+var that = this;
+    var _curry = function(...arg){
+        args = args.concat(...arg);
+        if(args.length >= func.length)
+        return func.apply(that,args);
+        else
+        return _curry;
+    }
+    return _curry;
 }
+var cur = curry(add);
+console.log(cur(1)(2)(3));

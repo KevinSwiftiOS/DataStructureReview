@@ -1,55 +1,53 @@
-//promise的基本使用
+
+//promise基本使用
 var promise = new Promise((resolve,reject) => {
-    setTimeout(() => {
-        resolve("5");
-    },1000);
+    setTimeout(() =>{
+resolve("4");
+    },4000);
 })
 promise.then(res => {
     console.log(res);
 })
-//手写promise 定义3个状态
-const PENDING = "pending";
-const FULLFILLED = "resolved";
-const REJECTED = "rejected";
-function MyPromise(func){
-    const that = this;
-    this.state = PENDING;
-    this.fullfilledWorks = [];
-    this.rejectedWorks = [];
-    function resolve(value){
-     
-    if(that.state == PENDING){
-        that.state = FULLFILLED;
-        that.fullfilledWorks.map(cb => {
-            console.log(222);
+var arr = [2,3];
+arr.map(cb => {
+    console.log(cb);
+})
+
+var PENGDING = "pending";
+var RESOLVED = "resolved";
+var REJECTED = "rejected";
+function MyPromose(func){
+     this.states = PENGDING;
+     this.fullfilledTasks = [];
+     this.rejectedTasks = [];
+    var that = this;
+    function resolved(value){
+        that.states = RESOLVED;
+        that.fullfilledTasks.map(cb =>{
             cb(value);
         })
     }
+    function rejected(value){
+        that.states = REJECTED;
+        that.rejectedTasks.map(cb =>{
+            cb(value);
+        })
     }
-    function reject(value){
-        if(that.state == PENDING){
-            that.state = REJECTED;
-            that.rejectedWorks.map(cb => {
-                cb(value);
-            })
-        }
-        }
-    func(resolve,reject);
+    func(resolved,rejected);
 }
-//定义then方法
-MyPromise.prototype.then = function(res){
-    if(this.state == PENDING){
-        this.fullfilledWorks.push(res);
+MyPromose.prototype.then = function(fullfilled,rejected){
+    if(this.states == PENGDING){
+        this.fullfilledTasks.push(fullfilled);
+    }
+    if(this.states == PENGDING){
+        this.rejectedTasks.push(rejected);
     }
 }
-
-var newPromise = new MyPromise((resolve,reject)=> {
+var pro = new MyPromose((resolve,rejected) => {
     setTimeout(() => {
-        resolve("4");
-    },4000);
+        resolve("5");
+    },5000);
 })
-newPromise.then(res=> {
+pro.then(res => {
     console.log(res);
 })
-
-var a = [1,2,3];

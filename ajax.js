@@ -44,3 +44,16 @@ function ajax(url,cb) {
     xhr.send();
 }
 //ajax会自动带上同源的cookie,而不会带上不同源的cookie
+//手写ajax
+var xhr;
+if(window.XMLHttpRequest){
+    xhr = new XMLHttpRequest();
+}
+if(window.ActiveXObject){
+    xhr = new ActiveXObject("Microsoft.XMLHTTP");
+}
+//监听状态变化
+xhr.onreadystatechange = function() {
+    if(xhr.status == 200 && xhr.readyState == 4)
+    
+}

@@ -4,6 +4,11 @@ sleep = (time) => {
         setTimeout(resolve,time);
     })
 }
+sleep = (time) => {
+    return new Promise((resolve) => {
+        setTimeout((resolve,time));
+    })
+}
 sleep(5000).then(res => {
     console.log("finish");
 })

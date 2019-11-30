@@ -1,6 +1,7 @@
 //深拷贝
 var a = {"name":"ckq"};
 var b = Object.assign({},a);
+
 b.name = "xxy";
 console.log(a);
 //使用json.stringFy

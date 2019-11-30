@@ -72,5 +72,16 @@ function throttle(func,wait){
         }
     }
 }
+function instanceOf(left,right){
+    var proto = left.__proto__;
+    var prototype = right.prototype;
+    while(true){
+        if(proto == null)
+        return false;
+        if(proto == prototype)
+        return true;
+        proto = proto.__proto__;
+    }
+}
 
 console.log(instanceOf(obj,Array));

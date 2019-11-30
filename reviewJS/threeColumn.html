@@ -1,0 +1,218 @@
+    <!DOCTYPE html>
+    <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+    <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+    <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+    <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+        <head>
+            <!--三栏布局的实现-->
+            <meta charset="utf-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <title></title>
+            <meta name="description" content="">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <link rel="stylesheet" href="">
+     
+<style type="text/css">
+   /* *{
+       margin: 0,auto;
+       padding: 0;
+       height: 100%;
+   }
+
+
+
+   body{
+       display: flex;
+       flex-direction: column;
+       height: 100%;
+       width: 100%;
+
+   } */
+    .header{
+        display: flex;
+        justify-content: center;
+          align-items: center;
+        flex-grow: 1;
+        width:100%;
+        height:100px;
+        background: red;
+    }
+    .content{
+        
+        flex-grow: 2;
+       
+        display: flex;
+       
+    }
+    .main{
+        display: flex;
+        justify-content: center;
+          align-items: center;
+        flex-grow: 2;
+        background: chartreuse;
+    }
+    .left{
+        display: flex;
+        justify-content: center;
+          align-items: center;
+        flex-grow: 1;
+        background: darkcyan;
+    }
+    .right{
+        display: flex;
+        justify-content: center;
+          align-items: center;
+        flex-grow: 1;
+        background: darkcyan;
+    }
+    
+    .footer{
+        display: flex;
+        justify-content: center;
+          align-items: center;
+        flex-grow: 1;
+        width:100%;
+        height:100px;
+        background: blue;
+    }
+    .nav{
+      width:100px;
+    }
+  .nav-head{
+      background-color: black;
+      color: white;
+      }
+.tran{
+width:0px;
+height:0px;
+position: absolute;
+margin-top: 5px;
+border-top: white 15px solid;
+border-bottom: transparent 15px solid;
+border-left: transparent 15px solid;
+border-right: transparent 15px solid;
+}
+.nav-item{
+display: none;
+
+}
+.nav-item a{
+display: block;
+}
+ .nav:hover .tran{
+    width:0px;
+   height:0px;
+   margin-top: -10px;
+   border-top: transparent 15px solid;
+   border-bottom: red 15px solid;
+   border-left: transparent 15px solid;
+   border-right: transparent 15px solid;
+ }
+ .nav:hover .nav-head{
+   background: white;
+   color: red;
+ }
+ .nav:hover .nav-item{
+  position:absolute;
+  display: block;
+   background: #f9f9f9;
+   min-width: 120px;
+   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  color: black;
+  padding: 10px 20px;
+  height: 100px;
+ }
+ .rect{
+   margin:-100px;
+   width:120px;
+   height:100px;
+   background: black;
+  padding: 20%;
+ }
+ 
+        </style>
+        </head>
+        <body>
+       <!-- <div class="nav">
+         <div class="nav-head">
+           <span>个人中心</span> <span class="tran"></span>
+         </div>
+         <div class="nav-item">
+           <a>联系客服</a>
+           <a>联系客服</a>
+           <a>联系客服</a>
+           <a>联系客服</a>
+         </div>
+       </div> -->
+    <div class="rect"></div>
+<!-- <header class="header">头部</header>
+        <div class="content">
+               
+                <div class="left">左侧栏</div>
+                <div class="main">主要部分</div>
+                <div class="right">右侧栏</div>
+            </div>
+            <footer class="footer">底部</footer> -->
+          <script>
+          //实现一个new函数
+          function New(func){
+            var res = {};
+            if(func.prototype != null)
+            res.prototype = func.prototype;
+            var ret = func.apply(res,arguments);
+            if((typeof ret == 'object' || typeof ret == 'function') && typeof ret != null)
+            return ret;
+          return res;
+          }
+          function a(){
+            this.name = "ckq";
+          }
+          var b = New(a);
+          console.log(b);
+         function instanceOf(left,right){
+    var proto = left.__proto__;
+    var prototype = right.prototype;
+    while(true){
+        if(proto == null)
+        return false;
+        if(proto == prototype)
+        return true;
+        proto = proto.__proto__;
+    }
+}
+function throttle(func,wait) {
+  var prev = new Date();
+  return function() {
+    var now = new Date();
+    if(now - prev >= wait)
+    func.apply(this,arguments);
+    prev = new Date();
+  }
+}
+console.log(instanceOf(b,Array));
+
+
+Function.prototype.mybind = function(context){
+  var context = context || window;
+  var _this = this;
+  var args = [...arguments].slice(1);
+  return function F() {
+    if(this instanceof F){
+      return new _this(...args,...arguments);
+    }
+    return _this.apply(context,args.concat(...arguments));
+  }
+}
+var a = {
+  name:"ckq"
+}
+function con(){
+  console.log(this.name);
+}
+var b = con.mybind(a);
+b();
+
+          
+          </script>
+        </body>
+    </html>

@@ -66,7 +66,7 @@ function debounce_2(func,wait){
         }
         timeout = setTimeout(() => {
             flag = true;
-        },1000);
+        },wait);
     }
 }
 function handle(){
@@ -143,6 +143,7 @@ console.log(arrs);
 
 function ajax(url,cb){
     var xhr;
+
     if(window.XMLHttpRequest){
         xhr = new XMLHttpRequest();
     }else if(window.ActiveXObject){
@@ -174,6 +175,73 @@ xhr.open("GET",url,true);
 xhr.send();
     }
 
+//节流 在一段时间内函数执行不会超过2次，相当于稀释了函数
+function throttle(func,wait){
+    var prev = new Date();
+    return function() {
+        var now = new Date();
+        if(now - prev >= wait){
+            func.apply(this,arguments);
+            prev = new Date();
+        }
+    }
+}
+//instanceOf 左边的和右边的，右边的在左边的原型链上
+function instanceoff(left,right){
+    var proto = left.__proto__;
+    var prototype = right.prototype;
+    while(true){
+        if(proto == null)
+        return false;
+        if(proto == prototype)
+        return true;
+        proto = proto.__proto__;
+    }
+}
+var a = {"name":"123"};
+console.log(instanceoff(a,Array));
+
+function NewA(func){
+    var res = {};
+    if(func.prototype != null)
+    res.__proto__ = func.prototype;
+    var ret = func.apply(res,[...arguments].slice(1));
+    if((typeof ret == 'object' || typeof ret == 'function') && typeof ret != null)
+    return ret;
+    return res;
+}
+function A(){
+    this.name = "fdfd";
+}
+var b = NewA(A);
+console.log(b);
+//实现函数柯里化
+function curry(func){
+    var _args = [];
+    var _curry = function(...args) {
+        _args = _args.concat(...args);
+        if(_args.length >= func.length){
+            var res = func.apply(this,_args);
+            return res;
+        }
+        return _curry;
+    }
+    return _curry;
+}
+function New(func){
+  var res = {};
+  if(func.prototype != null)
+  res.__proto__ = func.prototype;
+  var ret = func.apply(res,[...arguments].slice(1));
+  if((typeof ret == 'object' || typeof ret == 'function') && ret != null)
+    return ret;
+    return res;
+}
+function obj1(){
+    this.name = "袁浩";
+}
+var b = NewA(obj1);
+console.log(b);
 
             </script>
         </body>

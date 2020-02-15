@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>canvas</title>
+  <style>
+    .box{
+      border:1px solid;
+      overflow: hidden;
+    }
+ .box1{
+  float: left;
+  width: 200px;
+  height: 200px;
+  background: red;
+padding: 30px;
+ }
+ .box2{
+ float: left;
+ width:200px;
+ height:200px;
+ background: blueviolet;
+ }
+ .tran{
+   width:0px;
+   height:0px;
+   border: 20px solid transparent;
+   border-top: 20px solid red;
+  
+ }
+  </style>
+</head>
+<body>
+<div class="tran"></div>
+<div class="box">
+  <div class="box1">cd</div>
+  <div class="box2"></div>
+</div>
+  <canvas id="charts" width="600" height="400"></canvas>
+<script type="text/javascript">
+//   var canvas = document.getElementById('charts')
+//   var ctx = canvas.getContext('2d')
+//   ctx.fillRect(0,0,200,200)
+// ctx.fillStyle = '#00bcd4'
+// ctx.translate(100,100)
+// drawStar(ctx, 100)
+// ctx.clip()
+
+// ctx.beginPath()
+// ctx.fillStyle = '#fff'
+// ctx.arc(0,0,50,0,2*Math.PI,true)
+// ctx.fill()
+// function drawStar(ctx,r){
+//   ctx.save();
+//   ctx.beginPath()
+//   ctx.moveTo(r,0);
+//   for (var i=0;i<9;i++){
+//     ctx.rotate(Math.PI/5);
+//     if(i%2 == 0) {
+//       ctx.lineTo((r/0.525731)*0.200811,0);
+//     } else {
+//       ctx.lineTo(r,0);
+//     }
+//   }
+//   ctx.closePath();
+//   ctx.fill();
+//   ctx.restore();
+// }
+console.log(document.body.clientWidth);
+console.log(document.body.scrollWidth);
+console.log(document.body.offsetWidth);
+</script>
+</body>
+</html>

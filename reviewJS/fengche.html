@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		body{
+			background: purple;
+		}
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		ul{
+			position: relative;
+			width: 100px;
+			height: 100px;
+			top:200px;
+			left:50%;
+			margin-left: -50px;
+			transform-style: preserve-3d; /*表示是在三维空间中展示，*/
+			animation: sport 18s linear 0s infinite normal;
+		}
+		@keyframes sport{
+			form{
+				transform: rotateZ(0deg);
+			}to{
+				transform: rotateZ(360deg);
+			}
+		}
+		ul li{
+			position: absolute;
+			top: 0;
+			left:0;
+			border:50px solid transparent;
+			list-style: none;
+		}
+		 li.li_1st{
+			border-bottom:50px solid #ECF0F1;
+			transform:translateY(-80px) rotateZ(45deg) ;
+            /*移动多少距离，并且旋转多少角度*/
+		}
+        
+		li.li_2nd{
+			border-bottom:50px solid #95A5A5;
+			transform:translateX(80px) rotateZ(135deg);
+
+		}
+		li.li_3th{
+			border-bottom:50px solid #ECF0F1;
+			transform:translateY(80px) rotateZ(225deg);
+
+		}
+		li.li_4th{
+			border-bottom:50px solid #95A5A5;
+			transform:translateX(-80px) rotateZ(315deg);
+
+		}
+	</style>
+</head>
+<body>
+	<div class="box">
+		<ul>
+			<li class="li_1st"></li>
+			<li class="li_2nd"></li>
+			<li class="li_3th"></li>
+			<li class="li_4th"></li>
+		</ul>
+	</div>
+	
+</body>
+</html>

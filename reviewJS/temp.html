@@ -1,0 +1,55 @@
+    <!DOCTYPE html>
+    <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+    <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+    <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+    <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+        <head>
+            <meta charset="utf-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <title></title>
+            <meta name="description" content="">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <link rel="stylesheet" href="">
+        </head>
+        <body>
+            <button id = "test">Click me</button>
+            <!--[if lt IE 7]>
+                <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+            <![endif]-->
+            
+          <script>
+
+//         function Button() {
+//             this.clicked = true;
+//             this.click = function() {
+//                 this.clicked = true;
+//                 console.log(this);
+//             }
+//         }
+
+
+//      //   let button = new Button();
+//         let elem = document.querySelector("#test");
+//     //  for(var i = 0; i < 10;i++){
+  
+        
+        
+// b();
+
+var obj = {
+    a:1990,
+    getAge:function() {
+        var a = 1;
+        var fn = () => {
+            console.log(this);
+            console.log(this.a);
+        }
+        return fn();
+    }
+}
+var b = obj.getAge;
+b();
+
+          </script>
+        </body>
+    </html>
